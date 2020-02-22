@@ -1,0 +1,13 @@
+language: go
+
+services:
+  - docker
+
+script:
+- docker build -t laetus/go-mvv-grepper:$TRAVIS_COMMIT .
+
+deploy:
+  provider: script
+  script: bash scripts/docker_push.sh
+  on:
+    branch: master
